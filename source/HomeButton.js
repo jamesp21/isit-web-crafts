@@ -14,21 +14,33 @@ class HomeButtons extends React.Component {
         };
     }
 
+    makeHtml() {
+        $.publish('clientMakeHtml', {
+            message : "The user wants to makeHtml."
+        });
+    }
+
+    makeImage() {
+        $.publish('clientMakeImage', {
+            message : "The user wants to makeImage."
+        });
+    }
+
     render() {
         return <MuiThemeProvider>
         <div>
-        <h1>Home Page</h1>
-        <RaisedButton
-        id="makeHtml"
-        style={buttonStyle}
-        primary={true}
-        onClick={this.makeHtml}>{this.state.makeHtml}</RaisedButton>
-        <RaisedButton
-        style={buttonStyle}
-        primary={true}
-        onClick={this.makeImage}>{this.state.makeImage}</RaisedButton>
-        <p>Select a button.</p>
-        <p>This is a react component.</p>
+            <h1>Home Page</h1>
+            <RaisedButton
+                id="makeHtml"
+                style={buttonStyle}
+                primary={true}
+                onClick={this.makeHtml}>{this.state.makeHtml}</RaisedButton>
+            <RaisedButton
+                style={buttonStyle}
+                primary={true}
+                onClick={this.makeImage}>{this.state.makeImage}</RaisedButton>
+            <p>Select a button.</p>
+            <p>This is a react component.</p>
         </div>
         </MuiThemeProvider>;
     };
