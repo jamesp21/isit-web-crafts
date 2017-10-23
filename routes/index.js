@@ -6,7 +6,7 @@ var isAuthenticated = function(request, response, next) {
 
     // Passport added the this method to the request object.
     console.log('isAuthenticated called');
-   // if (request.isAuthenticated()) {
+    //if (request.isAuthenticated()) {
         console.log('successfully authenticated');
         return next();
    // }
@@ -19,6 +19,7 @@ module.exports = function(passport) {
     'use strict';
 
     /* GET home page. */
+   // router.get('/', isAuthenticated, function(request, response, next) {
     router.get('/', isAuthenticated, function(request, response, next) {
         'use strict';
         response.render('index', {
