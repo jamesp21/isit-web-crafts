@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import ReactHome from '../ReactHome';
-import HomeButtons from "../HomeButton";
+import HomeButtons from "../HomeButtons";
 
 import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -10,7 +10,7 @@ configure({adapter: new Adapter()});
 
 describe('basic sanity test', function() {
 
-    it('is true ture?', function() {
+    it('is true true?', function() {
         expect(true).toBe(true);
     });
 
