@@ -23397,6 +23397,7 @@ var HomeButtons = function (_React$Component) {
                     _react2.default.createElement(
                         _RaisedButton2.default,
                         {
+                            id: 'makeImage',
                             style: buttonStyle,
                             primary: true,
                             onClick: this.makeImage },

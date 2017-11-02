@@ -30,11 +30,5 @@ describe('basic sanity test', function() {
         ReactDOM.render(<HomeButtons/>, div);
     });
 
-    it('renders default value of H1 tag', () => {
-        const wrapper = shallow(<ReactHome/>);
-        const nineSign = <h1>An H1 element in a React Component</h1>
-        elfDebugEnzyme.getLast(wrapper, 'h1', true);
-        expect(wrapper.contains(nineSign)).toEqual(true);
-    })
 
 });
