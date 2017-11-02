@@ -1,5 +1,5 @@
 import React from 'react';
-import HomeButtons from 'HomeButtons';
+import HomeButtons from './HomeButtons';
 
   export default class ReactHome extends React.Component {
      render() {
