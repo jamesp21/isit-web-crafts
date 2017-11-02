@@ -15,11 +15,8 @@ var isAuthenticated = function(request, response, next) {
     response.redirect('/login');
 };
 
-module.exports = function(passport) {
-    'use strict';
 
     /* GET home page. */
-   // router.get('/', isAuthenticated, function(request, response, next) {
     router.get('/', isAuthenticated, function(request, response, next) {
         'use strict';
         response.render('index', {
@@ -35,6 +32,10 @@ module.exports = function(passport) {
             user: req.user
         });
     });
+
+	module.exports = function(passport) {
+    'use strict';
+
 
     router.post('/loginUser', passport.authenticate('login', {
         successRedirect: '/',

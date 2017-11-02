@@ -21,6 +21,8 @@
     "debug": "^3.1.0",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
+    "isit-code-james": "^1.0.0",
+    "isit-site-tools-james": "^1.0.2",
     "jquery": "^3.2.1",
     "marked": "^0.3.6",
     "mongoose": "^4.12.4",
