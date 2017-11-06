@@ -10,9 +10,7 @@ module.exports = {
                test: /.js?$/,
                loader: 'babel-loader',
                exclude: /node_modules/,
-               query: {presets: ['env', 'react']},
-               //devtool: 'source-map'
-
+               query: {presets: ['env', 'react']}
            }
        ]
    },
