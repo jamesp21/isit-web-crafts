@@ -6,7 +6,7 @@
     "test": "jest",
     "karma-test": "karma start",
     "start": "nodemon ./bin/www",
-    "bundle": "node_modules/.bin/webpack"
+    "bundle": "node_modules/.bin/webpack --watch"
   },
   "jest": {
     "verbose": true,

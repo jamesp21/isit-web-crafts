@@ -2,7 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactHome from './ReactHome';
 
-$(document).ready(function() {
-    const home = document.getElementById('home');
-    ReactDOM.render(<ReactHome/>, home);
+function reactHome() {
+    $('#pageLoad').load('/empty', function () {
+        home();
+    });
+}
+
+function home() {
+    ReactDOM.render(<ReactHome/>, homeDiv);
+}
+
+function reactMakeHtml(event, customMessage) {
+    ReactDOM.render(<MakeHtml/>, homeDiv);
+}
+
+$(document).ready(function () {
+    homeDiv = document.getElementById('home');
+    home();
+    $.subscribe('reactMakeHtml', reactMakeHtml);
 });

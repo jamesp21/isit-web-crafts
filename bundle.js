@@ -3125,9 +3125,24 @@ var _ReactHome2 = _interopRequireDefault(_ReactHome);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function reactHome() {
+    $('#pageLoad').load('/empty', function () {
+        home();
+    });
+}
+
+function home() {
+    _reactDom2.default.render(_react2.default.createElement(_ReactHome2.default, null), homeDiv);
+}
+
+function reactMakeHtml(event, customMessage) {
+    _reactDom2.default.render(_react2.default.createElement(MakeHtml, null), homeDiv);
+}
+
 $(document).ready(function () {
-    var home = document.getElementById('home');
-    _reactDom2.default.render(_react2.default.createElement(_ReactHome2.default, null), home);
+    homeDiv = document.getElementById('home');
+    home();
+    $.subscribe('reactMakeHtml', reactMakeHtml);
 });
 
 /***/ }),
@@ -31906,3 +31921,4 @@ exports.default = {
 
 /***/ })
 /******/ ]);
+//# sourceMappingURL=bundle.js.map
