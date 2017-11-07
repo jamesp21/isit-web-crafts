@@ -21,6 +21,7 @@
     ]
   },
   "dependencies": {
+    "babel-preset-stage-0": "^6.24.1",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.2",
     "bower": "^1.8.2",

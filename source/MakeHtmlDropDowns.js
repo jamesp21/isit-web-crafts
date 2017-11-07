@@ -11,9 +11,10 @@ const styles = {
 };
 
 const items = [];
+const siteDirs = [];
+const destDirs = [];
 
 class MakeHtmlDropDowns extends React.Component {
-
 
     constructor() {
         super();
@@ -21,13 +22,29 @@ class MakeHtmlDropDowns extends React.Component {
         this.state = {
             makeImage: 'Make Image',
             makeHtml: 'Make HTML',
-            value: 1
+            value: 1,
+            walk: 'Generate HTML',
+            siteDir: 'unknown',
+            destDir: 'unknown',
+            configSummary: []
         };
-        this.handleChange = this.handleChange.bind(this);
+        this.handleSiteDir = this.handleSiteDir.bind(this);
+        this.handleDestinationDir = this.handleDestinationDir.bind(this);
     }
 
-    handleChange(event, index, value) {
-        this.setState({value});
+    handleSiteDir(event, index, value) {
+        this.setState({value: value,
+            siteDir: event.target.innerHTML,
+            destDir: destDirs[value].props.primaryText});
+
+    }
+
+    handleDestinationDir(event, index, value) {
+        this.setState({
+            value: value,
+            siteDir: event.target.innerHTML,
+            destDir: destDirs[values].props.primaryText
+        });
     }
 
     /**
@@ -66,7 +83,7 @@ class MakeHtmlDropDowns extends React.Component {
                 <h1>Home Page</h1>
                 <DropDownMenu
                     value={this.state.value}
-                    onChange={this.handleChange}
+                    onChange={this.handleSiteDir}
                     style={styles.customWidth}
                     autoWidth={false}
                 >
@@ -77,7 +94,7 @@ class MakeHtmlDropDowns extends React.Component {
             </div>
         </MuiThemeProvider>
     };
-}
+};
 
 var buttonStyle = {
     margin: '15px'

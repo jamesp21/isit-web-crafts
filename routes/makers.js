@@ -178,4 +178,23 @@ router.get('/walk-old', function(request, response) {
 
 });
 
+generateHtml = () => {
+    console.log(this.state.value);
+    console.log(siteDirs[this.state.value]);
+    //walking.runWalkReact('qSingle', this.state.siteDir, this.state.destDir);
+    const query = '/makers/walk?siteDirsIndex=' + this.state.value;
+    var that = this;
+    fetch(query)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(configSummary) {
+            console.log(JSON.stringify(configSummary, null, 4));
+            // CALL that.setState to **state.configSummary** to configSummary.htmlFilesWritten
+        })
+        .catch(function(ex) {
+            console.log('parsing failed', ex);
+        });
+}
+
 module.exports = router;
