@@ -14,13 +14,13 @@ class HomeButtons extends React.Component {
         };
     }
 
-    makeHtml() {
+    makeHtml = () => {
         $.publish('clientMakeHtml', {
             message : "The user wants to makeHtml."
         });
     }
 
-    makeImage() {
+    makeImage = () => {
         $.publish('clientMakeImage', {
             message : "The user wants to makeImage."
         });

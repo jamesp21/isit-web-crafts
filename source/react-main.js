@@ -16,6 +16,7 @@ function reactHome() {
 }
 
 function home() {
+    console.log('hi');
     ReactDOM.render(<ReactHome/>, homeDiv);
 }
 

@@ -54,7 +54,7 @@ class MakeHtmlDropDowns extends React.Component {
      * @property {String} baseDir
      * @property {String} mostRecentDate
      */
-    loadConfig() {
+    loadConfig = () => {
         const that = this;
         fetch('/makers/config')
             .then(function (response) {
@@ -73,7 +73,7 @@ class MakeHtmlDropDowns extends React.Component {
             });
     }
 
-    componentDidMount() {
+    componentDidMount = () => {
         this.loadConfig();
     }
 
