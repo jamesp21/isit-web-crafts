@@ -22,6 +22,7 @@ define(['display', 'walking'], function(display, walking) {
                 var showDir = configSummary.baseDir + dir;
                 $('#dirsToWalk').append('<option value="' + showDir + '">' + showDir + '</option>');
             });
+            console.log(configSummary);
             configSummary.destinationDirs.forEach(function(dir) {
                 $('#destinationDirs').append('<option value="' + dir + '">' + dir + '</option>');
             });
@@ -41,7 +42,7 @@ define(['display', 'walking'], function(display, walking) {
 
     function publishRectMakeHtml() {
         $.publish('reactMakeHtml', {
-            message : "Publisher Constructor Called"
+            message: "Publisher Constructor Called"
         });
     }
 
