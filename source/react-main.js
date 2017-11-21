@@ -10,9 +10,8 @@ function reactMakeHtml(event, customMessage) {
 }
 
 function reactHome() {
-    $('#pageLoad').load('/empty', function () {
+    $('#pageLoad').empty();
         home();
-    });
 }
 
 function home() {

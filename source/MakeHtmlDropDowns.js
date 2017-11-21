@@ -2,6 +2,7 @@ import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
 import 'whatwg-fetch';
 
 const styles = {
@@ -45,6 +46,21 @@ class MakeHtmlDropDowns extends React.Component {
             siteDir: event.target.innerHTML,
             destDir: destDirs[values].props.primaryText
         });
+    }
+
+    generateHtml = () => {
+        const that = this;
+        fetch('/makers/walk')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (configSummary) {
+                //console.log('parsed json', JSON.stringify(configSummary, null, 4));
+                this.state.configSummary.push(configSummary.htmlFilesWritten);
+            })
+            .catch(function (ex) {
+                console.log('parsing failed', ex);
+            });
     }
 
     /**
@@ -103,6 +119,13 @@ class MakeHtmlDropDowns extends React.Component {
                 </DropDownMenu>
 
                 <p>This is a DropDown component.</p>
+                <RaisedButton
+                    style={buttonStyle}
+                    primary={true}
+                    onClick={this.generateHtml}>
+                    {this.state.walk}
+                </RaisedButton>
+                <pre>{this.state.configSummary[0]}</pre>
             </div>
         </MuiThemeProvider>
     };
