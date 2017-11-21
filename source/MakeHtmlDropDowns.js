@@ -2,6 +2,7 @@ import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
 import 'whatwg-fetch';
 
 const styles = {
@@ -10,10 +11,11 @@ const styles = {
     },
 };
 
-const items = [];
+//const items = [];
+const siteDirs = [];
+const destDirs = [];
 
 class MakeHtmlDropDowns extends React.Component {
-
 
     constructor() {
         super();
@@ -21,13 +23,29 @@ class MakeHtmlDropDowns extends React.Component {
         this.state = {
             makeImage: 'Make Image',
             makeHtml: 'Make HTML',
-            value: 1
+            value: 1,
+            walk: 'Generate HTML',
+            siteDir: 'unknown',
+            destDir: 'unknown',
+            configSummary: []
         };
-        this.handleChange = this.handleChange.bind(this);
+        this.handleSiteDir = this.handleSiteDir.bind(this);
+        this.handleDestinationDir = this.handleDestinationDir.bind(this);
     }
 
-    handleChange(event, index, value) {
-        this.setState({value});
+    handleSiteDir(event, index, value) {
+        this.setState({value: value,
+            siteDir: event.target.innerHTML,
+            destDir: destDirs[value].props.primaryText});
+
+    }
+
+    handleDestinationDir(event, index, value) {
+        this.setState({
+            value: value,
+            siteDir: event.target.innerHTML,
+            destDir: destDirs[values].props.primaryText
+        });
     }
 
     /**
@@ -37,7 +55,7 @@ class MakeHtmlDropDowns extends React.Component {
      * @property {String} baseDir
      * @property {String} mostRecentDate
      */
-    loadConfig() {
+    loadConfig = () => {
         const that = this;
         fetch('/makers/config')
             .then(function (response) {
@@ -45,10 +63,14 @@ class MakeHtmlDropDowns extends React.Component {
             })
             .then(function (configSummary) {
                 //console.log('parsed json', JSON.stringify(configSummary, null, 4));
-                items.length = 0;
+                siteDirs.length = 0;
                 configSummary.siteDirs.forEach(function (dir, index) {
                     const showDir = configSummary.baseDir + dir;
-                    items.push(<MenuItem value={index} key={index} primaryText={showDir} />);
+                    siteDirs.push(<MenuItem value={index} key={index} primaryText={showDir} />);
+                });
+                configSummary.destinationDirs.forEach(function (dir, index) {
+                    const showDir = configSummary.baseDir + dir;
+                    destDirs.push(<MenuItem value={index} key={index} primaryText={showDir} />);
                 });
             })
             .catch(function (ex) {
@@ -56,7 +78,27 @@ class MakeHtmlDropDowns extends React.Component {
             });
     }
 
-    componentDidMount() {
+    generateHtml = () => {
+        console.log(this.state.value);
+        console.log(siteDirs[this.state.value]);
+        //walking.runWalkReact('qSingle', this.state.siteDir, this.state.destDir);
+        const query = '/makers/walk';//?siteDirsIndex=' + this.state.value;
+        var that = this;
+        console.log('hi');
+        fetch(query)
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(configSummary) {
+                console.log(JSON.stringify(configSummary, null, 4));
+                this.state.configSummary.push(configSummary.htmlFilesWritten);
+            })
+            .catch(function(ex) {
+                console.log('parsing failed', ex);
+            });
+    }
+
+    componentDidMount = () => {
         this.loadConfig();
     }
 
@@ -66,18 +108,32 @@ class MakeHtmlDropDowns extends React.Component {
                 <h1>Home Page</h1>
                 <DropDownMenu
                     value={this.state.value}
-                    onChange={this.handleChange}
+                    onChange={this.handleSiteDir}
                     style={styles.customWidth}
                     autoWidth={false}
                 >
-                    {items}
+                    {siteDirs}
                 </DropDownMenu>
-
+                <DropDownMenu
+                    value={this.state.value}
+                    onChange={this.handleDestinationDir}
+                    style={styles.customWidth}
+                    autoWidth={false}
+                >
+                    {destDirs}
+                </DropDownMenu>
                 <p>This is a DropDown component.</p>
+
+                <RaisedButton
+                    id="generateButton"
+                    style={buttonStyle}
+                    primary={true}
+                    onClick={this.generateHtml}>{this.state.walk}</RaisedButton>
+                <pre>{this.state.configSummary[0]}</pre>
             </div>
         </MuiThemeProvider>
     };
-}
+};
 
 var buttonStyle = {
     margin: '15px'

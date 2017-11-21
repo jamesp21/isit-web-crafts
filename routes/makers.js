@@ -114,9 +114,10 @@ router.get('/deleteMarkdown', function(request, response) {
 });
 
 router.get('/walk', function(request, response) {
+    'use strict';
     console.log(request.query);
     //const runConfig = require('./markdown-to-html/runners/sample-runner');
-    walkRunner('calvert', request.query.siteDirsIndex)
+    walkRunner('calvert', request.query.siteDirsIndex, false)
         .then(function(report) {
             response.send(report);
         })
