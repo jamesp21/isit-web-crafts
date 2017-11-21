@@ -10,7 +10,7 @@ const styles = {
     },
 };
 
-const items = [];
+//const items = [];
 const siteDirs = [];
 const destDirs = [];
 
@@ -62,10 +62,14 @@ class MakeHtmlDropDowns extends React.Component {
             })
             .then(function (configSummary) {
                 //console.log('parsed json', JSON.stringify(configSummary, null, 4));
-                items.length = 0;
+                siteDirs.length = 0;
                 configSummary.siteDirs.forEach(function (dir, index) {
                     const showDir = configSummary.baseDir + dir;
-                    items.push(<MenuItem value={index} key={index} primaryText={showDir} />);
+                    siteDirs.push(<MenuItem value={index} key={index} primaryText={showDir} />);
+                });
+                configSummary.destinationDirs.forEach(function (dir, index) {
+                    const showDir = configSummary.baseDir + dir;
+                    destDirs.push(<MenuItem value={index} key={index} primaryText={showDir} />);
                 });
             })
             .catch(function (ex) {
@@ -87,7 +91,15 @@ class MakeHtmlDropDowns extends React.Component {
                     style={styles.customWidth}
                     autoWidth={false}
                 >
-                    {items}
+                    {siteDirs}
+                </DropDownMenu>
+                <DropDownMenu
+                    value={this.state.value}
+                    onChange={this.handleDestinationDir}
+                    style={styles.customWidth}
+                    autoWidth={false}
+                >
+                    {destDirs}
                 </DropDownMenu>
 
                 <p>This is a DropDown component.</p>
