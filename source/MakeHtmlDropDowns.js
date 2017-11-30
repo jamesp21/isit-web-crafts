@@ -44,7 +44,7 @@ class MakeHtmlDropDowns extends React.Component {
         this.setState({
             value: value,
             siteDir: event.target.innerHTML,
-            destDir: destDirs[values].props.primaryText
+            destDir: destDirs[value].props.primaryText
         });
     }
 
