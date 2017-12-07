@@ -1,6 +1,7 @@
 import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
+import {connect} from 'react-redux';
 
 class MakeHtmlHomeButton extends React.Component {
     constructor() {
@@ -12,10 +13,12 @@ class MakeHtmlHomeButton extends React.Component {
     }
 
     goHome() {
-        $.publish('home', {
+        /*$.publish('home', {
             message: "The user wants to go home."
-        });
-    }
+        });*/
+
+        this.props.dispatch({type: 'SWITCH_COMPONENT', component: 'app'});
+    };
 
     render() {
 
@@ -36,5 +39,7 @@ class MakeHtmlHomeButton extends React.Component {
 const buttonStyle = {
     margin: '10px 10px 10px 0'
 };
+
+MakeHtmlHomeButton = connect()(MakeHtmlHomeButton);
 
 export default MakeHtmlHomeButton;

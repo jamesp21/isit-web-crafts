@@ -98,36 +98,39 @@ class MakeHtmlDropDowns extends React.Component {
     }
 
     render() {
-        return <MuiThemeProvider>
+        return (
+            <MuiThemeProvider>
             <div>
                 <h1>Home Page</h1>
-                <DropDownMenu
+                <RaisedButton
                     value={this.state.value}
                     onChange={this.handleSiteDir}
                     style={styles.customWidth}
                     autoWidth={false}
                 >
                     {siteDirs}
-                </DropDownMenu>
-                <DropDownMenu
+                </RaisedButton>
+                <RaisedButton
                     value={this.state.value}
                     onChange={this.handleDestinationDir}
                     style={styles.customWidth}
                     autoWidth={false}
                 >
                     {destDirs}
-                </DropDownMenu>
+                </RaisedButton>
 
                 <p>This is a DropDown component.</p>
                 <RaisedButton
+                    id="generate"
                     style={buttonStyle}
                     primary={true}
                     onClick={this.generateHtml}>
                     {this.state.walk}
                 </RaisedButton>
-                <pre>{this.state.configSummary[0]}</pre>
+                <pre id="configSummary">{this.state.configSummary[0]}</pre>
             </div>
         </MuiThemeProvider>
+        );
     };
 };
 

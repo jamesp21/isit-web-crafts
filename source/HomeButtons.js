@@ -51,4 +51,15 @@ var buttonStyle = {
     margin: '15px'
 };
 
+const mapStateToProps = (state) => {
+    return {
+        loggedIn: state.loggedIn,
+        component: state.component,
+        signInLabel: state.signInLabel
+
+    }
+};
+
+HomeButtons = connect(mapStateToProps)(HomeButtons);
+
 export default HomeButtons;
